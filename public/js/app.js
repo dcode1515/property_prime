@@ -8358,9 +8358,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       formData.append("bathroom", this.formData.bathroom);
       formData.append("mothlyrate", this.formData.mothlyrate);
       formData.append("selectedPropertyType", this.formData.selectedPropertyType);
-      formData.append("image1", this.formData.image1);
-      formData.append("image2", this.formData.image2);
-      formData.append("image3", this.formData.image3);
+
+      // Append images
+      if (this.formData.image1) {
+        formData.append("image1", this.formData.image1);
+      }
+      if (this.formData.image2) {
+        formData.append("image2", this.formData.image2);
+      }
+      if (this.formData.image3) {
+        formData.append("image3", this.formData.image3);
+      }
       var delay = 2000;
       setTimeout(function () {
         axios.post("/property_prime/api/store/property", formData).then(function (response) {

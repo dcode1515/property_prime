@@ -144,5 +144,6 @@ Route::middleware(['check_permission:can_view'])->group(function () {
 
 
 Route::get('/realestate', [RealEstateController::class, 'index']);
-
-Route::get('/property/view', [RealEstateController::class, 'property_view'])->name('property.view');
+Route::get('/property/view/{id}', [RealEstateController::class, 'property_view'])->name('property.view');
+Route::get('/forrent', [RealEstateController::class, 'forrent'])->name('forrent');
+Route::get('/forsale', [RealEstateController::class, 'forsale'])->name('forsale');

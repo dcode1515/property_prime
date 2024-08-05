@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Property Prime</title>
+  <title>EstateAgency Bootstrap Template - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -155,7 +155,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href="property-grid.html">Property</a>
+            <a class="nav-link active" href="property-grid.html">Property</a>
           </li>
 
           <li class="nav-item">
@@ -165,7 +165,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item active" href="property-single.html">Property Single</a>
+              <a class="dropdown-item " href="property-single.html">Property Single</a>
               <a class="dropdown-item " href="blog-single.html">Blog Single</a>
               <a class="dropdown-item " href="agents-grid.html">Agents Grid</a>
               <a class="dropdown-item " href="agent-single.html">Agent Single</a>
@@ -192,20 +192,19 @@
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
-              <h1 class="title-single">{{$realestate->type}}, {{$realestate->property_name}}</h1>
-              <span class="color-text-a">{{$realestate->complete_address}}</span>
+              <h1 class="title-single">Our Amazing Properties</h1>
+              <span class="color-text-a">Grid Properties</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
             <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                  <a href="index.html">Home</a>
+                  <a href="#">Home</a>
                 </li>
-                <li class="breadcrumb-item">
-                  <a href="property-grid.html">Properties</a>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Properties Grid
                 </li>
-                
               </ol>
             </nav>
           </div>
@@ -213,176 +212,231 @@
       </div>
     </section><!-- End Intro Single-->
 
-    <!-- ======= Property Single ======= -->
-    <section class="property-single nav-arrow-b">
+    <!-- ======= Property Grid ======= -->
+    <section class="property-grid grid">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div id="property-single-carousel" class="swiper">
-              <div class="swiper-wrapper">
-                <div class="carousel-item-b swiper-slide">
-                  <img src="{{ asset('public/property/furnishing/' . $realestate->property_no.'/'.$realestate->image1) }}" alt="">
-                </div>
-                <div class="carousel-item-b swiper-slide">
-                <img src="{{ asset('public/property/furnishing/' . $realestate->property_no.'/'.$realestate->image2) }}" alt="">
-                </div>
-                <div class="carousel-item-b swiper-slide">
-                <img src="{{ asset('public/property/furnishing/' . $realestate->property_no.'/'.$realestate->image3) }}" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="property-single-carousel-pagination carousel-pagination"></div>
-          </div>
-        </div>
-
         <div class="row">
           <div class="col-sm-12">
+            <div class="grid-option">
+            <form method="GET" id="destinationForm">
+    <select name="destination" onchange="handleSelection(this)">
+        <option value="" disabled>Select Type</option>
+        <option value="{{ route('forsale') }}">For Sale</option>
+        <option value="{{ route('forrent') }}">For Rent</option>
+    </select>
+</form>
 
-            <div class="row justify-content-between">
-              <div class="col-md-5 col-lg-4">
-                <div class="property-price d-flex justify-content-center foo">
-                  <div class="card-header-c d-flex">
-                    <div class="card-box-ico">
-                      <span class="bi bi-cash">PHP</span>
-                    </div>
-                    <div class="card-title-c align-self-center">
-                      <h5 class="title-c">{{$realestate->monthlyrate}}</h5>
-                    </div>
+
+
+            </div>
+          </div>
+          @foreach($forrent as $index)
+          <div class="col-md-4">
+            <div class="card-box-a card-shadow">
+              <div class="img-box-a">
+              <img src="{{ asset('public/property/furnishing/' . $index->property_no.'/'.$index->image1) }}" alt="" class="img-a img-fluid">
+              </div>
+              <div class="card-overlay">
+                <div class="card-overlay-a-content">
+                  <div class="card-header-a">
+                    <h2 class="card-title-a">
+                      <a href="#">{{$index->type}}
+                        <br /> {{$index->property_name}}</a>
+                    </h2>
                   </div>
-                </div>
-                <div class="property-summary">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <div class="title-box-d section-t4">
-                        <h3 class="title-d">Quick Summary</h3>
-                      </div>
+                  <div class="card-body-a">
+                    @if($index->type=='For Rent')
+                    <div class="price-box d-flex">
+                      <span class="price-a">Rent Price | {{$index->monthlyrate}}</span>
                     </div>
+                    @endif
+                    @if($index->type=='For Sale')
+                    <div class="price-box d-flex">
+                      <span class="price-a">Sale Price | {{$index->monthlyrate}}</span>
+                    </div>
+                    @endif
+                    <a href="{{ route('property.view', ['id' => $index->id]) }}" class="link-a">Click here to view
+                        <span class="bi bi-chevron-right"></span>
+                    </a>
                   </div>
-                  <div class="summary-list">
-                    <ul class="list">
-                      <li class="d-flex justify-content-between">
-                        <strong>Property No:</strong>
-                        <span>{{$realestate->property_no}}</span>
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Location:</strong>
-                        <span>{{$realestate->complete_address}}</span>
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Property Type:</strong>
-                        <span>{{$realestate->type}}</span>
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Status:</strong>
-                        <span>{{$realestate->status}}</span>
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Area:</strong>
-                        <span>{{$realestate->sq}}
-                         
+                  <div class="card-footer-a">
+                    <ul class="card-info d-flex justify-content-around">
+                      <li>
+                        <h4 class="card-info-title">Area</h4>
+                        <span>{{$index->type}}
+                      
                         </span>
                       </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Bedrooms:</strong>
-                        <span>{{$realestate->bedrooms}}</span>
+                      <li>
+                        <h4 class="card-info-title">Beds</h4>
+                        <span>{{$index->bedrooms}}</span>
                       </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Bathroom:</strong>
-                        <span>{{$realestate->bath}}</span>
+                      <li>
+                        <h4 class="card-info-title">Baths</h4>
+                        <span>{{$index->bath}}</span>
                       </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Car Park</strong>
-                        <span>{{$realestate->carpark}}</span>
+                      <li>
+                        <h4 class="card-info-title">Toilet</h4>
+                        <span>{{$index->toilet}}</span>
                       </li>
+                      
                     </ul>
                   </div>
-                </div>
-              </div>
-              <div class="col-md-7 col-lg-7 section-md-t3">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="title-box-d">
-                      <h3 class="title-d">Property Description</h3>
-                    </div>
-                  </div>
-                </div>
-                <div class="property-description">
-                  <p class="description color-text-a">
-                     {{$realestate->description}}
-                  </p>
-                
-                </div>
-                <div class="row section-t3">
-                  <div class="col-sm-12">
-                    <div class="title-box-d">
-                      <h3 class="title-d">Amenities</h3>
-                    </div>
-                  </div>
-                </div>
-                <div class="amenities-list color-text-a">
-                  <ul class="list-a no-margin">
-                    <li>Area</li>
-                    <li>Bedrooms</li>
-                    <li>Bathroom</li>
-                    <li>Car Park </li>
-                   
-                  </ul>
                 </div>
               </div>
             </div>
           </div>
          
-          <div class="col-md-12">
+
+          @endforeach
           
-            <div class="row">
-              <div class="col-md-6 col-lg-4">
-                <img src="assets/img/agent-4.jpg" alt="" class="img-fluid">
-              </div>
-              
-              <div class="col-md-12 col-lg-4">
-                <div class="property-contact">
-                  <form class="form-a">
-                    <div class="row">
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required>
-                        </div>
-                      </div>
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
-                        </div>
-                      </div>
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <input type="text" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Contact No *" required>
-                        </div>
-                      </div>
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-12 mt-3">
-                        <button type="submit" class="btn btn-a">Submit</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+          
+          
+        <div class="row">
+          <div class="col-sm-12">
+            <nav class="pagination-a">
+              <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">
+                    <span class="bi bi-chevron-left"></span>
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item next">
+                  <a class="page-link" href="#">
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Property Grid Single-->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <section class="section-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <div class="widget-a">
+            <div class="w-header-a">
+              <h3 class="w-title-a text-brand">EstateAgency</h3>
+            </div>
+            <div class="w-body-a">
+              <p class="w-text-a color-text-a">
+                Enim minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat duis
+                sed aute irure.
+              </p>
+            </div>
+            <div class="w-footer-a">
+              <ul class="list-unstyled">
+                <li class="color-a">
+                  <span class="color-text-a">Phone .</span> contact@example.com
+                </li>
+                <li class="color-a">
+                  <span class="color-text-a">Email .</span> +54 356 945234
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 section-md-t3">
+          <div class="widget-a">
+            <div class="w-header-a">
+              <h3 class="w-title-a text-brand">The Company</h3>
+            </div>
+            <div class="w-body-a">
+              <div class="w-body-a">
+                <ul class="list-unstyled">
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i> <a href="#">Site Map</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i> <a href="#">Legal</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i> <a href="#">Agent Admin</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i> <a href="#">Careers</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i> <a href="#">Affiliate</a>
+                  </li>
+                  <li class="item-list-a">
+                    <i class="bi bi-chevron-right"></i> <a href="#">Privacy Policy</a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
+        <div class="col-sm-12 col-md-4 section-md-t3">
+          <div class="widget-a">
+            <div class="w-header-a">
+              <h3 class="w-title-a text-brand">International sites</h3>
+            </div>
+            <div class="w-body-a">
+              <ul class="list-unstyled">
+                <li class="item-list-a">
+                  <i class="bi bi-chevron-right"></i> <a href="#">Venezuela</a>
+                </li>
+                <li class="item-list-a">
+                  <i class="bi bi-chevron-right"></i> <a href="#">China</a>
+                </li>
+                <li class="item-list-a">
+                  <i class="bi bi-chevron-right"></i> <a href="#">Hong Kong</a>
+                </li>
+                <li class="item-list-a">
+                  <i class="bi bi-chevron-right"></i> <a href="#">Argentina</a>
+                </li>
+                <li class="item-list-a">
+                  <i class="bi bi-chevron-right"></i> <a href="#">Singapore</a>
+                </li>
+                <li class="item-list-a">
+                  <i class="bi bi-chevron-right"></i> <a href="#">Philippines</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </section><!-- End Property Single-->
-
-  </main><!-- End #main -->
-<br>
- 
+    </div>
+  </section>
   <footer>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+          <nav class="nav-footer">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="#">Home</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">About</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Property</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Blog</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Contact</a>
+              </li>
+            </ul>
+          </nav>
           <div class="socials-a">
             <ul class="list-inline">
               <li class="list-inline-item">
@@ -410,7 +464,7 @@
           <div class="copyright-footer">
             <p class="copyright color-text-a">
               &copy; Copyright
-              <span class="color-a">Necolo Earl Tekiko</span> All Rights Reserved.
+              <span class="color-a">EstateAgency</span> All Rights Reserved.
             </p>
           </div>
           <div class="credits">
@@ -420,7 +474,7 @@
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
           -->
-          
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
           </div>
         </div>
       </div>
@@ -434,6 +488,13 @@
   <script src="{{ asset('public/EstateAgency/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
   <script src="{{ asset('public/EstateAgency/assets/vendor/php-email-form/validate.js') }}"></script>
   <script src="{{ asset('public/EstateAgency/assets/js/main.js') }}"></script>
+  <script>
+    function handleSelection(selectElement) {
+        var form = document.getElementById('destinationForm');
+        form.action = selectElement.value; // Set the form action to the selected option's value
+        form.submit(); // Submit the form
+    }
+</script>
 </body>
 
 </html>

@@ -22,12 +22,12 @@
                       <!-- <ul class="sub-menu" style="display: block;"> -->
                <li><a href="{{route('property')}}">Property</a></li>
                     <li><a href="{{route('tenant')}}">Tenant</a></li>
-                    <li><a href="{{route('tenant.payment')}}">Payment</a></li>
-                    <li><a href="{{route('reports.property')}}">Reports</a></li>
+                    <!-- <li><a href="{{route('tenant.payment')}}">Payment</a></li>
+                    <li><a href="{{route('reports.property')}}">Reports</a></li> -->
                 
                </ul>
             </li>
-            <li>
+            <!-- <li>
                <a href=""><i data-feather="folder"></i>
                <span>Memorial</span><i class="accordion-icon fa fa-angle-left"></i></a>
                <ul class="sub-menu">
@@ -37,7 +37,7 @@
                 
                </ul>
             </li>
-            
+             -->
             {{-- <li class="mg-l-20-force mg-t-25-force menu-extras">Extras</li> --}}
             {{-- <li>
                <a href=""><i data-feather="users"></i>
@@ -50,12 +50,12 @@
                </ul>
             </li> --}}
 
-            <li class="mg-l-20-force mg-t-25-force menu-others">Others</li>
-            
-            <li>
+            <!-- <li class="mg-l-20-force mg-t-25-force menu-others">Others</li>
+             -->
+            <!-- <li>
                 <a href="{{ url('public/usersmanual/Users Manual.pdf') }}"  target="_blank"><i data-feather="coffee"></i>
                     <span>User's Manual</span></a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>
